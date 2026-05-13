@@ -90,7 +90,7 @@ lab-db-connection-failure
 
 The alarm triggers when there are 3 or more database connection errors in 5 minutes.
 
-<img width="1111" height="522" alt="cloudwatch-alarm" src="https://github.com/user-attachments/assets/690c2cab-3396-4afa-b527-29833635c5c1" />
+<img width="1543" height="746" alt="Schermafbeelding 2026-05-13 215252" src="https://github.com/user-attachments/assets/235da11a-0202-415d-83ca-8d1a61baa139" />
 
 
 ## SNS
@@ -117,6 +117,9 @@ After that, the app started failing when I went to:
 /list
 
 The browser showed a 500 error.
+
+<img width="1147" height="91" alt="image" src="https://github.com/user-attachments/assets/9e9bac9d-12be-41f3-8e87-58f0bb9073be" />
+
 
 What I checked
 
