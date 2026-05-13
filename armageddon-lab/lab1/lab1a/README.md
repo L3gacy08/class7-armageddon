@@ -1,4 +1,4 @@
-# LAB1A - EC2 to RDS
+# LAB1A - EC2 to RDS (AWS Console)
 
 ## What kind of lab is it?
 
