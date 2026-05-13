@@ -99,7 +99,10 @@ Then I checked the logs:
 
 I found that boto3 was missing, so the app could not start. I simply deleted the current instance, and recreated another which properly applied the script and launched the app server.
 
-I also had a database timeout issue. The RDS security group was allowing my own public IP instead of the EC2 security group. Once I changed the source to the EC2 security group, the app connected to RDS.
+I also had a database timeout issue. The RDS security group was allowing my own public IP instead of the EC2 security group, which caused an `Internal Server Error` <img width="1208" height="241" alt="Schermafbeelding 2026-05-11 145439" src="https://github.com/user-attachments/assets/01991b95-c60b-4bf6-aac5-1b1cbae4c31f" />
+
+
+Once I changed the source to the EC2 security group, the app connected to RDS.
 
 Evidence included
 
