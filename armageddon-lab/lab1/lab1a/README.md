@@ -4,7 +4,7 @@ This folder contains my work for Lab 1A.
 
 Lab 1A was focused on getting a basic EC2 web app connected to an RDS MySQL database.  
 
-## Lab 1A - EC2 to RDS(MySQL Notes App
+## Lab 1A - EC2 to RDS(MySQL) Notes App
 
 ### What I made
 
