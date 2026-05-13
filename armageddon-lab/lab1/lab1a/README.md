@@ -67,7 +67,7 @@ I tested the app in the browser.
 
 First I initialized the database:
 
-http://<EC2_PUBLIC_IP>/init
+http://3.90.40.21/init
 
 Then I added notes:
 
@@ -87,13 +87,13 @@ At first the app was not reachable because the Flask service was not running cor
 
 I checked the service with:
 
-sudo systemctl status rdsapp
+`sudo systemctl status rdsapp`
 
 Then I checked the logs:
 
-sudo journalctl -u rdsapp --no-pager -n 100
+`sudo journalctl -u rdsapp --no-pager -n 100`
 
-I found that boto3 was missing, so the app could not start. After installing the missing Python packages and restarting the service, the app started.
+I found that boto3 was missing, so the app could not start. I simply deleted the current instance, and recreated another which properly applied the script and launched the app server.
 
 I also had a database timeout issue. The RDS security group was allowing my own public IP instead of the EC2 security group. Once I changed the source to the EC2 security group, the app connected to RDS.
 
