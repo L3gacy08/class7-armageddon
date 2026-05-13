@@ -1,0 +1,8 @@
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "lab-ec2-secrets-policy",
+            "PolicyArn": "arn:aws:iam::481665094413:policy/lab-ec2-secrets-policy"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+# Armageddon Evidence Notes
+
+Region used for Lab 1A/1B: us-east-1
+
+Naming convention:
+- EC2 app: lab-ec2-app
+- EC2 SG: sg-ec2-lab
+- RDS DB: lab-mysql
+- RDS SG: sg-rds-lab
+- Secret: lab/rds/mysql
+- SSM params:
+  - /lab/db/endpoint
+  - /lab/db/port
+  - /lab/db/name

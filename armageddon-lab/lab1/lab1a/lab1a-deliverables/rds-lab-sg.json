@@ -1,0 +1,42 @@
+{
+    "SecurityGroups": [
+        {
+            "GroupId": "sg-0c690fbb10207b413",
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1",
+                    "UserIdGroupPairs": [],
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ],
+            "VpcId": "vpc-024bed9681d2f79b2",
+            "SecurityGroupArn": "arn:aws:ec2:us-east-1:481665094413:security-group/sg-0c690fbb10207b413",
+            "OwnerId": "481665094413",
+            "GroupName": "rds-lab-sg",
+            "Description": "Created by RDS management console",
+            "IpPermissions": [
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 3306,
+                    "ToPort": 3306,
+                    "UserIdGroupPairs": [
+                        {
+                            "Description": "access rule for  ec2-lab-sg",
+                            "UserId": "481665094413",
+                            "GroupId": "sg-0580021c60acf416e"
+                        }
+                    ],
+                    "IpRanges": [],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ]
+        }
+    ]
+}
