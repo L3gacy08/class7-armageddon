@@ -1,4 +1,4 @@
-# Lab 1 - EC2 to RDS
+# LAB1A - EC2 to RDS
 
 This folder contains my work for Lab 1A.
 
