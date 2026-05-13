@@ -1,6 +1,6 @@
 # LAB1A - EC2 to RDS
 
-## What is lab is?
+## What kind of lab is it?
 
 In this lab I built a simple AWS setup where an EC2 instance runs a small Flask web app, and the app connects to an RDS MySQL database.
 
@@ -8,8 +8,9 @@ The main point of the lab was not really the app itself. The point was to unders
 
 Basic configuration:
 
-- Browser -> EC2 Flask App -> RDS MySQL
-- Resources I used
+Browser -> EC2 Flask App -> RDS MySQL
+Resources I used:
+
 - EC2 instance: lab-ec2-app
 - EC2 security group: ec2-lab-sg
 - RDS database: lab-mysql
@@ -23,10 +24,10 @@ I launched an EC2 instance and used userdata to install and start a Flask app.
 
 The app has these endpoints:
 
-/
- /init
- /add?note=example
- /list
+
+ `/init`
+ `/add?note=example`
+ `/list`
 
 The RDS database was created with MySQL. The database is not publicly accessible.
 
@@ -36,15 +37,15 @@ Security group setup
 
 The EC2 security group allows:
 
-HTTP 80 from 0.0.0.0/0
-SSH 22 from my IP only
+HTTP for `port 80` from `0.0.0.0/0`
+SSH for `port 22` from my IP only
 
 <img width="1563" height="457" alt="image" src="https://github.com/user-attachments/assets/00adbc27-7bc8-4524-9b73-75922b53502a" />
 
 
 The RDS security group allows:
 
-MySQL 3306 from the EC2 security group
+MySQL `port 3306` from the EC2 security group
 
 <img width="1468" height="231" alt="image" src="https://github.com/user-attachments/assets/e2ac6a95-d021-4756-8f36-493c57297621" />
 
@@ -78,6 +79,9 @@ http://3.90.40.21/add?note=IAMpolicyConnectMe!!
 Then I listed the notes:
 
 http://3.90.40.21/list
+
+<img width="1206" height="316" alt="Schermafbeelding 2026-05-11 193019" src="https://github.com/user-attachments/assets/e30f78a3-ccd8-41be-b932-d028cd0fea0f" />
+
 
 The notes showed up which shoed the app could write to and read from the RDS.
 
