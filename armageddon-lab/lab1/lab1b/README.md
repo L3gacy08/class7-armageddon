@@ -18,7 +18,7 @@ For Lab 1B I added:
 - Metric filter
 - CloudWatch Alarm
 - SNS alert topic
-- Incident response test
+- Incident response incident
 
 ## Parameter Store
 
@@ -106,11 +106,9 @@ This was used like an alert system.
 <img width="1630" height="548" alt="sns-topic" src="https://github.com/user-attachments/assets/ebce43d1-698f-4802-89fd-ee30b6ae5644" />
 
 
-## Incident Response Section
 
-For the incident response part, I simulated a credential problem.
 
-I changed the password in Secrets Manager so it did not match the actual RDS password anymore.
+Furthermore I changed the password in Secrets Manager so it did not match the actual RDS password anymore.
 
 After that, the app started failing when I went to:
 
@@ -160,13 +158,72 @@ and the notes showed again.
 
 <img width="795" height="317" alt="recovered-db-list-output" src="https://github.com/user-attachments/assets/d09af693-407b-419f-8247-392500b741ec" />
 
-
 This showed that the system could be recovered using the tools already in AWS.
 
 The important part was using logs instead of guessing.
 
 At first, all I had was a 500 error.
 After checking the logs, I could see the real problem was the database password.
+
+
+# Incident Response Report
+
+## Incident Summary
+
+In this incident a component of the Database had been broken deliberately
+
+A RDS inbound rule that let the EC2 security group connect on MySQL port `3306`
+
+After I did that, the app was still loading, but `/list` stopped working because the app could not reach the database.
+
+<img width="1027" height="131" alt="image" src="https://github.com/user-attachments/assets/00c332f6-b84a-4b0e-826e-e8b7bd47dfbb" />
+
+
+## What I saw
+
+I checked CloudWatch Log and the CloudWatch alarm.
+
+<img width="388" height="140" alt="image" src="https://github.com/user-attachments/assets/1a9e680d-469a-4d53-9dac-6a3d773149d2" />
+
+<img width="1104" height="479" alt="image" src="https://github.com/user-attachments/assets/91a22185-229a-444f-816c-3ed72e2c0a21" />
+
+The logs showed database connection errors. It looked like a timeout issue, so that made me think it was a security group issue.
+
+<img width="1621" height="594" alt="Schermafbeelding 2026-05-15 131536" src="https://github.com/user-attachments/assets/ed7470ba-0dc6-4354-917c-0849ca8e000e" />
+
+## Failure Type
+
+Security group block.
+
+I did not think it was a password problem because the error was not `Access denied`.
+
+## Root Cause
+
+The RDS security group was missing the rule that allowed the RDS traffic from the EC2 security group.
+
+<img width="819" height="451" alt="image" src="https://github.com/user-attachments/assets/b94b85db-7cb1-47d2-b871-b2e4ab686ca2" />
+
+
+So the EC2 was blocked from communication to the RDS.
+
+## Containment
+
+- I did not rebuild EC2.
+- I did not rebuild RDS.
+- I did not put the password directly in the app.
+- I kept the system the same and only fixed the broken rule.
+
+## Recovery
+
+I added the RDS inbound rule back:
+
+MYSQL/Aurora `TCP 3306` from the EC2 security group
+
+Then I tested `http://<current_IP_EC2>/list` again and the notes came back.
+
+## Time to Recovery
+
+About an 1 hour an 30 minutes.
 
 Evidence included
 
@@ -181,7 +238,8 @@ My evidence includes:
 - SNS topic/subscription
 - Recovery proof showing /list working again
 
-Reflection questions
+
+## Reflection questions
 
 A) Why might Parameter Store still exist alongside Secrets Manager?
 - Parameter Store is good for normal config values, like endpoint, port, and database name. Secrets Manager is better for passwords.
@@ -197,3 +255,8 @@ D) How does this lab reduce MTTR?
 
 E) What would you automate next?
 - I would automate the CloudWatch Agent setup so EC2 starts logging right away when it launches.
+
+Preventive Action - Incident Response
+
+I would be more careful with database security group changes, and also add some kind alert when a database security group rule is changed.
+
