@@ -235,19 +235,19 @@ My evidence includes:
 
 ## Reflection questions
 
-A) Why might Parameter Store still exist alongside Secrets Manager?
-- Parameter Store is good for normal config values, like endpoint, port, and database name. Secrets Manager is better for passwords.
+A Why might Parameter Store still exist alongside Secrets Manager?
+- Parameter Store is good for normal config values, like the endpoint, port, and database name. Secrets Manager is better for passwords.
 
-B) What breaks first during secret rotation?
+B What breaks first during secret rotation?
 - The app breaks first if the secret password and the real RDS password do not match.
 
-C) Why should alarms be based on symptoms instead of causes?
+C Why should alarms be based on symptoms instead of causes?
 - Because at first I may not know the real cause. The symptom tells me something is wrong and I need to check it.
 
-D) How does this lab reduce MTTR?
+D How does this lab reduce MTTR?
 - It makes recovery faster because I can use logs and saved values instead of guessing or rebuilding everything.
 
-E) What would you automate next?
+E What would you automate next?
 - I would automate the CloudWatch Agent setup so EC2 starts logging right away when it launches.
 
 Preventive Action - Incident Response
