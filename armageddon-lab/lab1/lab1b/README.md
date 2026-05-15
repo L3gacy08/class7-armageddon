@@ -191,11 +191,9 @@ The logs showed database connection errors. It looked like a timeout issue, so t
 
 <img width="1621" height="594" alt="Schermafbeelding 2026-05-15 131536" src="https://github.com/user-attachments/assets/ed7470ba-0dc6-4354-917c-0849ca8e000e" />
 
-## Failure Type
 
-Security group block.
+I did not think it was a password problem because the error was not `Access denied`. So, I checked if the security group rules were correct.
 
-I did not think it was a password problem because the error was not `Access denied`.
 
 ## Root Cause
 
@@ -206,20 +204,16 @@ The RDS security group was missing the rule that allowed the RDS traffic from th
 
 So the EC2 was blocked from communication to the RDS.
 
-## Containment
-
-- I did not rebuild EC2.
-- I did not rebuild RDS.
-- I did not put the password directly in the app.
-- I kept the system the same and only fixed the broken rule.
-
 ## Recovery
 
 I added the RDS inbound rule back:
 
 MYSQL/Aurora `TCP 3306` from the EC2 security group
 
-Then I tested `http://<current_IP_EC2>/list` again and the notes came back.
+Then I tested `curl http://32.198.12.95/list` again and the notes came back.
+
+<img width="1023" height="61" alt="image" src="https://github.com/user-attachments/assets/44a5e538-deba-41aa-be50-ff15685d2d6c" />
+
 
 ## Time to Recovery
 
