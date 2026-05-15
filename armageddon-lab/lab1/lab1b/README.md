@@ -215,9 +215,8 @@ Then I tested `curl http://32.198.12.95/list` again and the notes came back.
 <img width="1023" height="61" alt="image" src="https://github.com/user-attachments/assets/44a5e538-deba-41aa-be50-ff15685d2d6c" />
 
 
-## Time to Recovery
 
-About an 1 hour an 30 minutes.
+It took me about an 1 hour an 30 minutes to resolve the problem
 
 Evidence included
 
